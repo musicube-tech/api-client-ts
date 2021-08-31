@@ -10,7 +10,7 @@ export async function releaseAnniversaries(
   date: string,
   init: RequestInit = {},
 ): Promise<RecordingTrackProduct[]> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/showcase/releaseAnniversaries/${date}`,
     {
       ...init,

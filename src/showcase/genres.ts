@@ -7,7 +7,7 @@ import { config } from '../config';
 import type { Genre } from '../types';
 
 export async function genres(init: RequestInit = {}): Promise<Genre[]> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/showcase/genres`,
     {
       ...init,

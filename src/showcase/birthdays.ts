@@ -10,7 +10,7 @@ export async function birthdays(
   date: string,
   init: RequestInit = {},
 ): Promise<Anniversary[]> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/showcase/birthdays/${date}`,
     {
       ...init,

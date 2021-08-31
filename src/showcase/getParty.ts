@@ -10,7 +10,7 @@ export async function getParty(
   name: string,
   init: RequestInit = {},
 ): Promise<Party> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(
       /\/$/,
       '',

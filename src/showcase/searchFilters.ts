@@ -11,7 +11,7 @@ export async function searchFilters(
   responseSize: 's' | 'l' = 's',
   init: RequestInit = {},
 ): Promise<SearchFiltersResponse> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(
       /\/$/,
       '',

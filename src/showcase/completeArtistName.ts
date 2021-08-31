@@ -11,7 +11,7 @@ export async function completeArtistName(
   prefix: string,
   init: RequestInit = {},
 ): Promise<CompleteArtistNameResponse> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(
       /\/$/,
       '',

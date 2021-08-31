@@ -37,7 +37,7 @@ export async function searchAll(
     query.set('shuffle', 'true');
   }
 
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(
       /\/$/,
       '',

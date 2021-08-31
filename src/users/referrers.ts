@@ -9,7 +9,7 @@ export async function referrers(
   user: string,
   init: RequestInit = {},
 ): Promise<string[]> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/users/referrers/${user}`,
     {
       ...init,

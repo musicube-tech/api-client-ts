@@ -9,7 +9,7 @@ import type { TagCategory } from '../types';
 export async function tagCategories(
   init: RequestInit = {},
 ): Promise<TagCategory[]> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/showcase/tagCategories`,
     {
       ...init,

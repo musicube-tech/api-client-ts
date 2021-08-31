@@ -103,17 +103,20 @@ export async function signUp(
     fullName,
     companyName,
   });
-  const res = await fetch(`${config.apiUrl.replace(/\/$/, '')}/users/sign-up`, {
-    method: 'post',
-    body,
-    ...init,
-    headers: {
-      ...config.headers,
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      ...init.headers,
+  const res = await config.fetch(
+    `${config.apiUrl.replace(/\/$/, '')}/users/sign-up`,
+    {
+      method: 'post',
+      body,
+      ...init,
+      headers: {
+        ...config.headers,
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        ...init.headers,
+      },
     },
-  });
+  );
 
   ensure20x(res);
 }

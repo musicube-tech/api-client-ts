@@ -7,16 +7,19 @@ import { config } from '../config';
 import { UserData } from '../types';
 
 export async function me(token: string, init?: RequestInit): Promise<UserData> {
-  const res = await fetch(`${config.apiUrl.replace(/\/$/, '')}/users/me`, {
-    method: 'get',
-    ...init,
-    headers: {
-      ...config.headers,
-      'Content-Type': 'application/json;charset=UTF-8',
-      Authorization: `Bearer ${token}`,
-      ...(init || {}).headers,
+  const res = await config.fetch(
+    `${config.apiUrl.replace(/\/$/, '')}/users/me`,
+    {
+      method: 'get',
+      ...init,
+      headers: {
+        ...config.headers,
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: `Bearer ${token}`,
+        ...(init || {}).headers,
+      },
     },
-  });
+  );
 
   ensure20x(res);
 

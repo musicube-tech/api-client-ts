@@ -20,7 +20,7 @@ export async function recording(
   isrcs: string | string[],
   init: RequestInit = {},
 ): Promise<FullRecording | undefined | FullRecording[]> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/public/recording/${
       Array.isArray(isrcs) ? isrcs.join(',') : isrcs
     }?responseSize=l`,
@@ -60,7 +60,7 @@ export async function initPut(
   token: string,
   init: RequestInit = {},
 ): Promise<string> {
-  const res = await fetch(
+  const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/public/recording/${id}/audio/initPut`,
     {
       method: 'POST',

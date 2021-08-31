@@ -10,7 +10,7 @@ export async function login(
   password: string,
   init?: RequestInit,
 ): Promise<string> {
-  const res = await fetch(`${config.apiUrl.replace(/\/$/, '')}/login`, {
+  const res = await config.fetch(`${config.apiUrl.replace(/\/$/, '')}/login`, {
     method: 'post',
     body: JSON.stringify({
       [username.match(/.+@.+\..+/) ? 'email' : 'username']: username,
