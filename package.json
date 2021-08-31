@@ -22,7 +22,7 @@
     "music",
     "data"
   ],
-  "author": "Hannes Diercks <node@xiphe.net> (https://xiphe.net/)",
+  "author": "Hannes Diercks <hdiercks@musicu.be> (https://www.musicu.be/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/musicube-tech/api-client-ts/issues"
