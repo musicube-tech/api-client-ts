@@ -6,15 +6,24 @@ import {
 import { config } from '../config';
 import type { FullRecording } from '../types';
 
+export type { FullRecording };
+
 export async function recording(
   isrc: string,
+  init?: RequestInit,
+): Promise<FullRecording | undefined>;
+export async function recording(
+  isrcs: string[],
+  init?: RequestInit,
+): Promise<FullRecording[]>;
+export async function recording(
+  isrcs: string | string[],
   init: RequestInit = {},
-): Promise<FullRecording[]> {
+): Promise<FullRecording | undefined | FullRecording[]> {
   const res = await fetch(
-    `${config.apiUrl.replace(
-      /\/$/,
-      '',
-    )}/public/recording/${isrc}?responseSize=l`,
+    `${config.apiUrl.replace(/\/$/, '')}/public/recording/${
+      Array.isArray(isrcs) ? isrcs.join(',') : isrcs
+    }?responseSize=l`,
     {
       ...init,
       headers: {
@@ -30,6 +39,10 @@ export async function recording(
     const data = await res.json();
     if (!data || !Array.isArray(data)) {
       throw new Error('Unexpected format of /public/recording response');
+    }
+
+    if (!Array.isArray(isrcs)) {
+      return data[0];
     }
 
     return data;
