@@ -1,7 +1,7 @@
 interface Config {
   fetch: typeof window.fetch;
   apiUrl: string;
-  headers: HeadersInit;
+  headers: Record<string, string>;
 }
 
 export const config: Config = {
