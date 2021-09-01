@@ -65,7 +65,7 @@ export function signUpSubmittable(validations: SignUpDataValidations): boolean {
         (validations[key] || {}).empty === false &&
         (validations[key] || {}).error === false
       );
-    }, true) && !validations.companyName?.error
+    }, true) && !(validations.companyName || {}).error
   );
 }
 
