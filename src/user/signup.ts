@@ -104,7 +104,7 @@ export async function signUp(
     companyName,
   });
   const res = await config.fetch(
-    `${config.apiUrl.replace(/\/$/, '')}/users/sign-up`,
+    `${config.apiUrl.replace(/\/$/, '')}/user/sign-up`,
     {
       method: 'post',
       body,

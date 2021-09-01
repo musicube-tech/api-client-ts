@@ -8,7 +8,7 @@ import { UserData } from '../types';
 
 export async function me(token: string, init?: RequestInit): Promise<UserData> {
   const res = await config.fetch(
-    `${config.apiUrl.replace(/\/$/, '')}/users/me`,
+    `${config.apiUrl.replace(/\/$/, '')}/user/me`,
     {
       method: 'get',
       ...init,
