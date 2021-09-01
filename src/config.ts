@@ -5,7 +5,7 @@ interface Config {
 }
 
 export const config: Config = {
-  fetch: (window || global).fetch,
+  fetch: typeof fetch ? fetch.bind(window || global) : (undefined as any),
   apiUrl: 'https://api.musicu.be/api/v1',
   headers: {
     'x-mc-api-client-ts': `vVERSION`,
