@@ -4,8 +4,16 @@ interface Config {
   headers: Record<string, string>;
 }
 
+const g =
+  typeof window !== 'undefined'
+    ? window
+    : typeof global !== 'undefined'
+    ? global
+    : false;
+
 export const config: Config = {
-  fetch: typeof fetch ? fetch.bind(window || global) : (undefined as any),
+  fetch:
+    g && typeof g.fetch === 'function' ? g.fetch.bind(g) : (undefined as any),
   apiUrl: 'https://api.musicu.be/api/v1',
   headers: {
     'x-mc-api-client-ts': `vVERSION`,
