@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ts": "tsc",
-    "build:set-version": "sed -i.bak \"s/VERSION/$npm_package_version/\" dist/config/index.js && rm dist/config/index.js.bak",
-    "build:factories": "create-typed-factories --extra-tags faker,type --no-type-check --extend-file src/config/extendTypedFactories.ts --output-file src/factories.ts src/types.ts",
+    "build:set-version": "sed -i.bak \"s/VERSION/$npm_package_version/\" dist/config.js && rm dist/config.js.bak",
+    "build:factories": "create-typed-factories --extra-tags faker,type --no-type-check --extend-file src/_/extendTypedFactories.ts --output-file src/factories.ts src/types.ts",
     "cleanup": "echo \"node_modules\" > .gitignore && git clean -df && git co .gitignore",
     "prepare": "npm run cleanup && npm run build:factories && npm run build:ts && npm run build:set-version && cp -r dist/* ."
   },
