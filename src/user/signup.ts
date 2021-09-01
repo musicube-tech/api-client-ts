@@ -62,8 +62,8 @@ export function signUpSubmittable(validations: SignUpDataValidations): boolean {
     keys.reduce((ok, key) => {
       return (
         ok &&
-        validations[key]?.empty === false &&
-        validations[key]?.error === false
+        (validations[key] || {}).empty === false &&
+        (validations[key] || {}).error === false
       );
     }, true) && !validations.companyName?.error
   );
