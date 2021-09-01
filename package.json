@@ -1,6 +1,6 @@
 {
   "name": "@musicube/api-client",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "client for musicube api",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
