@@ -16,6 +16,7 @@ export const config: Config = {
     g && typeof g.fetch === 'function' ? g.fetch.bind(g) : (undefined as any),
   apiUrl: 'https://api.musicu.be/api/v1',
   headers: {
+    Accept: 'application/json',
     'x-mc-api-client-ts': `vVERSION`,
   },
 };

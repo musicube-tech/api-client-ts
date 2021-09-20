@@ -34,11 +34,16 @@ export const ERROR_INVALID_SHOWCASE_COMPLETE_ARTIST_NAME_RESPONSE = Symbol(
 export const ERROR_INVALID_REFERRERS_RESPONSE = Symbol(
   'ERROR_INVALID_REFERRERS_RESPONSE',
 );
+export const ERROR_UNAUTHORIZED = Symbol('ERROR_UNAUTHORIZED');
 
 export const VALIDATION_ERROR_OVER_255 = 'validation.only255';
 export const VALIDATION_ERROR_INVALID_EMAIL =
   'validation.emailMustHaveAtAndDot';
 export const VALIDATION_ERROR_NOT_SET = 'validation.notSet';
+
+export type RequestInitWithRecordHeaders = Omit<RequestInit, 'headers'> & {
+  headers?: Record<string, string>;
+};
 
 export class MusicubeApiError extends Error {
   code: string | symbol;

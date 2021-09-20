@@ -2,8 +2,10 @@ import {
   ensure20x,
   MusicubeApiError,
   ERROR_INVALID_PUBLIC_RECORDING_RESPONSE,
+  RequestInitWithRecordHeaders,
 } from '../common';
 import { config } from '../config';
+import { requireAuthorized } from '../helpers/requireAuthorized';
 import type { FullRecording } from '../types';
 
 export type { FullRecording };
@@ -57,19 +59,18 @@ export async function recording(
 
 export async function initPut(
   id: string,
-  token: string,
-  init: RequestInit = {},
+  init: RequestInitWithRecordHeaders = {},
 ): Promise<string> {
   const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/public/recording/${id}/audio/initPut`,
     {
-      method: 'POST',
+      method: 'post',
       ...init,
-      headers: {
+      headers: requireAuthorized({
         ...config.headers,
-        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
         ...init.headers,
-      },
+      }),
     },
   );
 

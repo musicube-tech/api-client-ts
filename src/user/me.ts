@@ -2,22 +2,24 @@ import {
   ensure20x,
   MusicubeApiError,
   ERROR_INVALID_ME_RESPONSE,
+  RequestInitWithRecordHeaders,
 } from '../common';
 import { config } from '../config';
 import { UserData } from '../types';
+import { requireAuthorized } from '../helpers/requireAuthorized';
 
-export async function me(token: string, init?: RequestInit): Promise<UserData> {
+export async function me(
+  init: RequestInitWithRecordHeaders = {},
+): Promise<UserData> {
   const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/user/me`,
     {
       method: 'get',
       ...init,
-      headers: {
+      headers: requireAuthorized({
         ...config.headers,
-        'Content-Type': 'application/json;charset=UTF-8',
-        Authorization: `Bearer ${token}`,
-        ...(init || {}).headers,
-      },
+        ...init.headers,
+      }),
     },
   );
 

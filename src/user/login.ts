@@ -2,13 +2,14 @@ import {
   ensure20x,
   MusicubeApiError,
   ERROR_INVALID_AUTH_RESPONSE,
+  RequestInitWithRecordHeaders,
 } from '../common';
 import { config } from '../config';
 
 export async function login(
   username: string,
   password: string,
-  init?: RequestInit,
+  init: RequestInitWithRecordHeaders = {},
 ): Promise<string> {
   const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/user/login`,
@@ -21,8 +22,8 @@ export async function login(
       ...init,
       headers: {
         ...config.headers,
-        'Content-Type': 'application/json;charset=UTF-8',
-        ...(init || {}).headers,
+        'Content-Type': 'application/json',
+        ...init.headers,
       },
     },
   );

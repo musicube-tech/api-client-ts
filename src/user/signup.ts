@@ -3,9 +3,11 @@ import {
   VALIDATION_ERROR_OVER_255,
   VALIDATION_ERROR_INVALID_EMAIL,
   VALIDATION_ERROR_NOT_SET,
+  RequestInitWithRecordHeaders,
 } from '../common';
 import { config } from '../config';
 import type { Validation, SignUpData, SignUpDataValidations } from '../types';
+import { requireAuthorized } from '../helpers/requireAuthorized';
 
 function validateMax255(value?: string): Validation {
   if (!value || !value.length) {
@@ -94,8 +96,7 @@ export function validateSignUp(data: SignUpData): SignUpDataValidations {
 
 export async function signUp(
   { emailAddress, password, fullName, companyName }: SignUpData,
-  token: string,
-  init: RequestInit = {},
+  init: RequestInitWithRecordHeaders = {},
 ): Promise<void> {
   const body = JSON.stringify({
     emailAddress,
@@ -109,12 +110,11 @@ export async function signUp(
       method: 'post',
       body,
       ...init,
-      headers: {
+      headers: requireAuthorized({
         ...config.headers,
-        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
         ...init.headers,
-      },
+      }),
     },
   );
 
