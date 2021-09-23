@@ -1,4 +1,4 @@
-export function isValidEmail(email: string) {
+export function isValidEmail(email: unknown): boolean {
   /* Wow, much email! */
-  return email.match(/.+@.+\..+/);
+  return typeof email === 'string' && Boolean(email.match(/.+@.+\..+/));
 }
