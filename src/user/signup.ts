@@ -8,6 +8,7 @@ import {
 import { config } from '../config';
 import type { Validation, SignUpData, SignUpDataValidations } from '../types';
 import { requireAuthorized } from '../helpers/requireAuthorized';
+import { isValidEmail } from '../helpers/isValidEmail';
 
 function validateMax255(value?: string): Validation {
   if (!value || !value.length) {
@@ -27,7 +28,7 @@ function validateEmail(email?: string): Validation {
 
   return {
     empty: false,
-    error: email.match(/.+@.+\..+/) ? false : VALIDATION_ERROR_INVALID_EMAIL,
+    error: isValidEmail(email) ? false : VALIDATION_ERROR_INVALID_EMAIL,
   };
 }
 
