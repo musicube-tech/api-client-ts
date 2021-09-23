@@ -15,9 +15,6 @@ export async function newFeedback(
   data: FeedbackData,
   init: RequestInitWithRecordHeaders = {},
 ): Promise<void> {
-  if (!isValidEmail(data.email)) {
-    throw new MusicubeApiError('Invalid email', ERROR_INVALID_SIGNUP_NEW_EMAIL);
-  }
   const res = await fetch(`${config.apiUrl.replace(/\/$/, '')}/feedback/new`, {
     method: 'post',
     body: JSON.stringify(data),
