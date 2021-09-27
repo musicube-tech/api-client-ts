@@ -10,7 +10,7 @@
     "expose": "cp -r dist/* .",
     "cleanup": "echo \"node_modules\" > .gitignore && git clean -df && git co .gitignore",
     "prepare:linked": "npm run build:ts && npm run expose",
-    "prepare": "npm run cleanup && npm run build:factories && npm run build:ts && npm run build:set-version && npm run expose"
+    "prepare": "npm run build:factories && npm run build:ts && npm run build:set-version && npm run expose"
   },
   "repository": {
     "type": "git",
