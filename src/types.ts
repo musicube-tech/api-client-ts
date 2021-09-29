@@ -281,3 +281,45 @@ export interface Anniversary {
   /** @faker { "date.format": ["yyyy-MM-dd", "past"] } */
   lifespanEnd: string | null;
 }
+
+export type FileStatus = null | 'processing' | 'done';
+interface BaseFile {
+  id: number;
+  /** @faker system.fileName */
+  name: string;
+  /** @faker system.fileExt */
+  extension: string;
+  folder: null | string;
+  fingerprintStatus: FileStatus;
+  inferenceStatus: FileStatus;
+  recording: Recording;
+}
+export interface ApiFile extends BaseFile {
+  /** @faker { "date.formatISO": ["past"] } */
+  uploadStartTime: null | string;
+  /** @faker { "date.formatISO": ["past"] } */
+  uploadEndTime: null | string;
+  /** @faker { "date.formatISO": ["past"] } */
+  fingerprintStartTime: null | string;
+  /** @faker { "date.formatISO": ["past"] } */
+  fingerprintEndTime: null | string;
+  /** @faker { "date.formatISO": ["past"] } */
+  inferenceStartTime: null | string;
+  /** @faker { "date.formatISO": ["past"] } */
+  inferenceEndTime: null | string;
+}
+
+export interface File extends BaseFile {
+  /** @faker date.past */
+  uploadStartTime: null | Date;
+  /** @faker date.past */
+  uploadEndTime: null | Date;
+  /** @faker date.past */
+  fingerprintStartTime: null | Date;
+  /** @faker date.past */
+  fingerprintEndTime: null | Date;
+  /** @faker date.past */
+  inferenceStartTime: null | Date;
+  /** @faker date.past */
+  inferenceEndTime: null | Date;
+}

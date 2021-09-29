@@ -9,6 +9,9 @@ Object.assign(faker.date, {
       format,
     );
   },
+  formatISO: (factory = 'recent', args = []) => {
+    return require('date-fns/formatISO')((faker.date as any)[factory](...args));
+  },
 });
 
 export function extend(
