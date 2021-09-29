@@ -1,9 +1,4 @@
-import {
-  ensure20x,
-  MusicubeApiError,
-  ERROR_INVALID_AUTH_RESPONSE,
-  RequestInitWithRecordHeaders,
-} from '../common';
+import { ensure20x, RequestInitWithRecordHeaders } from '../common';
 import { config } from '../config';
 
 export async function login(
@@ -32,11 +27,7 @@ export async function login(
 
   const m = (res.headers.get('authorization') || '').match(/Bearer (.*)/);
   if (!m) {
-    throw new MusicubeApiError(
-      'Invalid auth response',
-      ERROR_INVALID_AUTH_RESPONSE,
-      res,
-    );
+    throw new Error('Invalid auth response');
   }
 
   return m[1];

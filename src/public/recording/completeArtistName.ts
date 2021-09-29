@@ -1,10 +1,5 @@
 import type { CompleteArtistNameResponse } from '../../types';
-import {
-  ensure20x,
-  MusicubeApiError,
-  ERROR_INVALID_PUBLIC_RECORDING_COMPLETE_ARTIST_NAME_RESPONSE,
-  RequestInitWithRecordHeaders,
-} from '../../common';
+import { ensure20x, RequestInitWithRecordHeaders } from '../../common';
 import { config } from '../../config';
 export type { CompleteArtistNameResponse };
 
@@ -30,35 +25,27 @@ export async function completeArtistName(
 
   ensure20x(res);
 
-  try {
-    const data = await res.json();
-    if (!data || !Array.isArray(data)) {
-      throw new Error(
-        'Unexpected format of /public/recording/completeArtistName response',
-      );
-    }
-
-    return data.map(
-      ({
-        type,
-        artist_name: artistName,
-        contributor_types: contributorTypes,
-        recording_title: recordingTitle,
-      }) => ({
-        type,
-        artistName,
-        contributorTypes: (contributorTypes || '')
-          .split(',')
-          .filter((s: string) => s.length)
-          .map((s: string) => s.trim()),
-        recordingTitle,
-      }),
-    );
-  } catch (err) {
-    throw new MusicubeApiError(
-      err instanceof Error ? err.message : String(err),
-      ERROR_INVALID_PUBLIC_RECORDING_COMPLETE_ARTIST_NAME_RESPONSE,
-      res,
+  const data = await res.json();
+  if (!data || !Array.isArray(data)) {
+    throw new Error(
+      'Unexpected format of /public/recording/completeArtistName response',
     );
   }
+
+  return data.map(
+    ({
+      type,
+      artist_name: artistName,
+      contributor_types: contributorTypes,
+      recording_title: recordingTitle,
+    }) => ({
+      type,
+      artistName,
+      contributorTypes: (contributorTypes || '')
+        .split(',')
+        .filter((s: string) => s.length)
+        .map((s: string) => s.trim()),
+      recordingTitle,
+    }),
+  );
 }

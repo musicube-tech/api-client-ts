@@ -1,9 +1,5 @@
 import { ensure20x, RequestInitWithRecordHeaders } from '../common';
 import { config } from '../config';
-import { isValidEmail } from '../helpers/isValidEmail';
-import { MusicubeApiError, ERROR_INVALID_SIGNUP_NEW_EMAIL } from '../common';
-
-export { isValidEmail };
 
 export interface FeedbackData {
   email: string;

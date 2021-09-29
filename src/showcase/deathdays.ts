@@ -1,8 +1,4 @@
-import {
-  ensure20x,
-  MusicubeApiError,
-  ERROR_INVALID_SHOWCASE_DEATHDAYS_RESPONSE,
-} from '../common';
+import { ensure20x } from '../common';
 import { config } from '../config';
 import { Anniversary } from '../types';
 
@@ -23,17 +19,9 @@ export async function deathdays(
 
   ensure20x(res);
 
-  try {
-    const data = await res.json();
-    if (!data || !Array.isArray(data)) {
-      throw new Error('Unexpected format of /showcase/deathdays response');
-    }
-    return data;
-  } catch (err) {
-    throw new MusicubeApiError(
-      err instanceof Error ? err.message : String(err),
-      ERROR_INVALID_SHOWCASE_DEATHDAYS_RESPONSE,
-      res,
-    );
+  const data = await res.json();
+  if (!data || !Array.isArray(data)) {
+    throw new Error('Unexpected format of /showcase/deathdays response');
   }
+  return data;
 }
