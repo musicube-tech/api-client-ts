@@ -282,7 +282,8 @@ export interface Anniversary {
   lifespanEnd: string | null;
 }
 
-export type FileStatus = null | 'processing' | 'done';
+type FileStatus = null | 'processing' | 'done';
+
 interface BaseFile {
   id: number;
   /** @faker system.fileName */
