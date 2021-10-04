@@ -18,12 +18,12 @@ export interface Options {
   //   | 'nameDesc'
   //   | 'UploadStartTimeAsc'
   //   | 'UploadStartTimeDesc';
-  shuffle?: boolean;
+  shuffled?: boolean;
 }
 
 export async function files(
   { musicalFeatures = {}, ...filters }: Filters,
-  { page = 0 }: Options,
+  { page = 0, shuffled }: Options,
   init: RequestInit = {},
 ): Promise<File[]> {
   const filtersWithValue = Object.fromEntries(
@@ -38,6 +38,9 @@ export async function files(
     ...filtersWithValue,
     page: String(page),
   });
+  if (shuffled) {
+    query.append('shuffled', 'true');
+  }
 
   const res = await config.fetch(
     `${config.apiUrl.replace(/\/$/, '')}/user/files?${query.toString()}`,

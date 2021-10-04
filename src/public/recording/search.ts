@@ -16,12 +16,12 @@ export interface Options {
     | 'popularityAsc'
     | 'releaseDateDesc'
     | 'releaseDateAsc';
-  shuffle?: boolean;
+  shuffled?: boolean;
 }
 
 export async function search(
   { musicalFeatures = {}, ...filters }: Filters,
-  { page = 0, shuffle = false, sort = 'popularityDesc' }: Options,
+  { page = 0, shuffled = false, sort = 'popularityDesc' }: Options,
   init: RequestInit = {},
 ): Promise<{
   currentPageNumber: number;
@@ -42,8 +42,8 @@ export async function search(
     sort,
   });
 
-  if (shuffle) {
-    query.set('shuffle', 'true');
+  if (shuffled) {
+    query.set('shuffled', 'true');
   }
 
   const res = await config.fetch(
