@@ -26,8 +26,10 @@
     "url": "https://github.com/musicube-tech/api-client-ts/issues"
   },
   "homepage": "https://github.com/musicube-tech/api-client-ts#readme",
+  "dependencies": {
+    "oazapfts": "3.5.0"
+  },
   "devDependencies": {
-    "oazapfts": "3.5.0",
     "typescript": "4.4.3"
   }
 }
