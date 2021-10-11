@@ -1,0 +1,33 @@
+{
+  "name": "@musicube/api-client",
+  "version": "0.5.3",
+  "description": "client for musicube api",
+  "scripts": {
+    "prepare": "npm run generate && npm run build:es && npm run build:cjs",
+    "generate": "oazapfts --optimistic https://api.musicu.be/v3/api-docs index.ts",
+    "build:es": "tsc index.ts -d -m es2020 --moduleResolution node && mv index.js es.js && mv index.d.ts es.d.ts",
+    "build:cjs": "tsc index.ts -d -m commonjs --moduleResolution node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/musicube-tech/api-client-ts.git"
+  },
+  "keywords": [
+    "client",
+    "musicube",
+    "music",
+    "rich",
+    "music",
+    "data"
+  ],
+  "author": "Hannes Diercks <hdiercks@musicu.be> (https://www.musicu.be/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/musicube-tech/api-client-ts/issues"
+  },
+  "homepage": "https://github.com/musicube-tech/api-client-ts#readme",
+  "devDependencies": {
+    "oazapfts": "3.5.0",
+    "typescript": "4.4.3"
+  }
+}
