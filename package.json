@@ -1,6 +1,6 @@
 {
   "name": "@musicube/api-client",
-  "version": "0.5.3",
+  "version": "1.0.0-0",
   "description": "client for musicube api",
   "scripts": {
     "prepare": "npm run generate && npm run build:es && npm run build:cjs",
