@@ -22,19 +22,19 @@ export interface Filters {
 }
 export interface Options {
   page?: number;
-  // sort?:
-  //   | 'folderAsc'
-  //   | 'folderDesc'
-  //   | 'nameAsc'
-  //   | 'nameDesc'
-  //   | 'UploadStartTimeAsc'
-  //   | 'UploadStartTimeDesc';
+  sort?:
+    | 'folderAsc'
+    | 'folderDesc'
+    | 'nameAsc'
+    | 'nameDesc'
+    | 'UploadStartTimeAsc'
+    | 'UploadStartTimeDesc';
   shuffled?: boolean;
 }
 
 export async function files(
   { musicalFeatures = {}, ...filters }: Filters,
-  { page = 0, shuffled }: Options,
+  { page = 0, shuffled, sort }: Options,
   init: RequestInit = {},
 ): Promise<File[]> {
   const filtersWithValue = Object.fromEntries(
@@ -54,6 +54,9 @@ export async function files(
   });
   if (shuffled) {
     query.append('shuffled', 'true');
+  }
+  if (sort) {
+    query.append('sort', sort);
   }
 
   const res = await config.fetch(
